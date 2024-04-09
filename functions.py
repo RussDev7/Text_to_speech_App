@@ -22,8 +22,23 @@ def select_file(text):
 def run_pyttsx3():
     """Converts string to mp3 file and saves it to downloads folder"""
     engine = pyttsx3.init()
-    engine.setProperty('rate', 155)
-    engine.save_to_file(pdf_string, f"{get_download_folder()}/{name_without_filetype}.mp3")
+    engine.setProperty('rate', 170)
+    voices = engine.getProperty('voices')
+    engine.setProperty('voice', voices[1].id)
+    
+    current_dir = os.getcwd()
+
+    mp3_folder_path = os.path.join(current_dir, 'mp3')
+    if not os.path.exists(mp3_folder_path):
+        os.makedirs(mp3_folder_path)
+        
+    mp3_file_name = os.path.splitext(os.path.basename(pdf_file))[0] + '.mp3'
+    mp3_file_path = os.path.join('mp3', mp3_file_name)
+    
+    if os.path.exists(mp3_folder_path + '\\' + mp3_file_name):
+        os.remove(mp3_folder_path + '\\' + mp3_file_name)
+        
+    engine.save_to_file(pdf_string, mp3_file_path)
     engine.runAndWait()
 
 

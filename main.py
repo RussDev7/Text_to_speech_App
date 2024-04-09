@@ -7,7 +7,7 @@ customtkinter.set_appearance_mode("dark")
 customtkinter.set_default_color_theme("blue")
 window = customtkinter.CTk()
 window.title("PDF to Speech Converter")
-window.geometry("400x300")
+window.geometry("600x300")
 window.config(padx=50, pady=50)
 
 # Label
